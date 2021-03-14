@@ -123,3 +123,4 @@ function currentLocationButton() {
 }
 let button = document.querySelector("#current-city");
 button.addEventListener("click", currentLocationButton);
+//added axios
