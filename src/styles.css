@@ -1,0 +1,73 @@
+h1 {
+  text-align: center;
+}
+h2 {
+  margin-top: 15px;
+  position: relative;
+  right: -50px;
+  border: 5px solid blue;
+  border-radius: 100%;
+  line-height: 175px;
+  width: 175px;
+  text-align: center;
+}
+p {
+  text-align: center;
+}
+.TEMP-card {
+  position: relative;
+  bottom: -10px;
+  left: 200px;
+  border: 5px solid lime;
+  width: 150px;
+}
+.DT-card {
+  position: relative;
+  bottom: -40px;
+  left: 95px;
+  border: 5px solid aquamarine;
+}
+.funny_saying-card {
+  position: relative;
+  border: 5px solid red;
+}
+.col-2 {
+  width: 20%;
+  border: 5px solid gray;
+  text-align: center;
+}
+
+.btn-primary {
+  display: block;
+  margin: 0;
+  text-align: center;
+  line-height: 15px;
+  width: 100px;
+}
+.btn-secondary {
+  display: block;
+  margin: auto;
+  text-align: center;
+  line-height: 15px;
+  width: 100px;
+}
+.form-control {
+  display: block;
+  margin: auto;
+  width: 100%;
+  padding: 7px 7px 7px 7px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bolder;
+}
+div.card-body {
+  text-align: center;
+}
+.weather-border {
+  border: 5px solid #111111;
+  margin: 28px;
+  padding: 15px;
+  border-radius: 10px;
+  width: auto;
+  background: turquoise;
+}
