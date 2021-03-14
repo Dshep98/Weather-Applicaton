@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dom's Weather</title>
+    <link href="src/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/index.js" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-border">
+        <h1>Welcome to Dom's Weather</h1>
+        <p>Where you get weather from anywhere and funny southern sayings!😁</p>
+        <hr />
+        <form class="form">
+          <div class="row">
+            <div class="col-9">
+              <input
+                type="search"
+                class="form-control"
+                placeholder="Enter a city"
+                autocomplete="off"
+                id="city-input"
+              />
+            </div>
+            <button type="submit" value="search a city" class="btn btn-primary">
+              Enter
+            </button>
+            <button
+              type="submit"
+              value="current location"
+              class="btn btn-secondary"
+              id="current-city"
+            >
+              Current Location
+            </button>
+          </div>
+        </form>
+        <div class="row">
+          <div class="col-3" id="city">
+            <h2 class="city">Dallas</h2>
+          </div>
+          <div class="col-3">
+            <div class="DT-card">
+              <div class="card-body">
+                Day:
+                <br />
+                <span class="time"> Time: 08:41am </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="TEMP-card">
+              <div class="card-body">
+                Current Weather: <br />
+                SUNNY
+                <br />☀<br />
+                <span class="current"> 76 </span>
+                <br />
+                <span id="celsius"><a href="#">℃ |</a></span>
+                <span id="Fahrenheit"><a href="#">℉</a></span>
+                <br />
+                H:
+                <span class="high"> 95° </span>
+                L:
+                <span id="low"> 75° </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col">
+            <div class="funny_saying-card">
+              <div class="card-body">
+                I heard its snowing this weekend, but I'm from the south so
+                that's none of my business 🐸☕.
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-2">
+            <div class="D1-card">
+              <div class="D-body">
+                Day 1:<br />
+                65° <br />
+                Rain <br />
+                🌧<br />
+                H: 75° L: 55°
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="D2-card">
+              <div class="D-body">
+                Day 2: <br />
+                63° <br />
+                Windy <br />
+                💨<br />
+                H: 75° L: 60°
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="D3-card">
+              <div class="D-body">
+                Day 3:<br />
+                70° <br />
+                Cloudy <br />
+                ☁<br />
+                H: 72° L: 57°
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="D4-card">
+              <div class="D-body">
+                Day 4: <br />
+                75°<br />
+                Partly Cloudy <br />
+                ⛅<br />
+                H: 70° L: 75°
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="D5-card">
+              <div class="D-body">
+                Day 5:<br />
+                95°<br />
+                SUNNY <br />
+                ☀<br />
+                H: 95° L: 75°
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+
+    <p>Coded by Dominique Shepherd</p>
+  </body>
+</html>
