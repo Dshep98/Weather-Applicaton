@@ -1,29 +1,54 @@
-//Feature 1 Add day and time Format: Tuesday 17:45
-function Dateformated(date) {
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-  let hours = date.getHours();
+//GLobal declared vairables for api urls
+let units = "imperial";
+let apiKey = "470566c1acab67fed5787c420158691b";
+
+//Default Forecast
+let forecastElement = document.querySelector("#forecast");
+forecastElement.innerHTML = null;
+for (let index = 0; index <= 4; index++) {
+  forecastElement.innerHTML += `<div class="col-2">
+<div class="D1-card">
+  <div class="D-body">
+    Day 1:<br />
+    65° <br />
+    Rain <br />
+    🌧<br />
+    H: 75° L: 55°
+  </div>
+</div>
+</div>`;
+}
+//Days array to access the day of the week by name.
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let update = new Date();
+//Day and Time Format for Todays Date.
+function formatDate(time) {
+  update = new Date(time);
+  let day = update.getDay();
+  return ` ${days[day]} | ${FormatHours(update)} `;
+}
+//This function takes in the timestamp of the city and formats it.
+function FormatHours(timestamp) {
+  let time = new Date(timestamp);
+  let hours = time.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
   }
-  let min = date.getMinutes();
+  let min = time.getMinutes();
   if (min < 10) {
     min = `0${min}`;
   }
-  let dateDay = date.getDay();
-  return ` ${days[dateDay]} | ${hours}:${min} `;
+  return ` ${hours}:${min} `;
 }
-let date = new Date();
-let current = Dateformated(date);
-let time = document.querySelector(".time");
-time.innerHTML = current;
+
 //Feature 2 Add a search engine, when searching for a city
 //(i.e. Paris), display the city name on the page after
 //the user submits the form
