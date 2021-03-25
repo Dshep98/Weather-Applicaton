@@ -143,7 +143,7 @@ let form = document.querySelector(".form");
 form.addEventListener("submit", change_city);
 
 //Location functions uses the Geolocation Api and searches by the given coordinates of the longitude and Latitude.
-function location(event) {
+function located_Coords(event) {
   event.preventDefault();
   function ShowLocation(position) {
     let lat = position.coords.latitude;
@@ -157,7 +157,7 @@ function location(event) {
   navigator.geolocation.getCurrentPosition(ShowLocation);
 }
 let button = document.querySelector("#current-city");
-button.addEventListener("click", location);
+button.addEventListener("click", location_Coords);
 
 
 // FUnction converts the fahrenheit temp to celsius once its clicked.
