@@ -21,7 +21,7 @@ for (let index = 0; index <= 4; index++) {
 //This function displays all the features that come with the city.
 //It produces the temperature, Date, weather description/icons, Highs/Lows, and Wind/Humidity;
 function ShowCityTemp(response) {
-  let location = document.querySelector("h2");
+  let located_city = document.querySelector("h2");
   let FullDate = document.querySelector("#full-date");
   let month = update.getMonth() + 1;
   let Day = update.getDate();
@@ -42,7 +42,7 @@ function ShowCityTemp(response) {
   HighTemp = response.data.main.temp_max;
   LowTemp = Math.round(response.data.main.temp_min);
   ////////////////////////////////////////////////////
-  location.innerHTML = response.data.name;
+  located_city.innerHTML = response.data.name;
   temp.innerHTML = Math.round(FahrenheitTemp);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   FullDate.innerHTML = fullDate;
