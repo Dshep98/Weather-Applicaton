@@ -82,3 +82,49 @@ function location(event) {
 }
 let button = document.querySelector("#current-city");
 button.addEventListener("click", location);
+
+//This function displays all the features that come with the city.
+//It produces the temperature, Date, weather description/icons, Highs/Lows, and Wind/Humidity;
+function ShowCityTemp(response) {
+  let location = document.querySelector("h2");
+  let FullDate = document.querySelector("#full-date");
+  let month = update.getMonth() + 1;
+  let Day = update.getDate();
+  let year = update.getFullYear();
+  let fullDate = `${month}/${Day}/${year}`;
+  let dateElement = document.querySelector("#time");
+  let wind = document.querySelector("#wind");
+  //let windDirect = document.querySelector("#direction");
+  let precip = document.querySelector("#precip");
+  let temp = document.querySelector(".current");
+  let iconElement = document.querySelector("#icon");
+  let iconInfo = document.querySelector("#iconInfo");
+  let iconID = response.data.weather[0].icon;
+  //Added in highs/lows for celsius once its clicked.
+  let highTemp = document.querySelector("#high");
+  let lowTemp = document.querySelector("#low");
+  FahrenheitTemp = response.data.main.temp;
+  HighTemp = response.data.main.temp_max;
+  LowTemp = Math.round(response.data.main.temp_min);
+  ////////////////////////////////////////////////////
+  location.innerHTML = response.data.name;
+  temp.innerHTML = Math.round(FahrenheitTemp);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  FullDate.innerHTML = fullDate;
+  wind.innerHTML = Math.round(response.data.wind.speed);
+  precip.innerHTML = response.data.main.humidity;
+  //windDirect.innerHTML = response.data.wind.deg;
+  //console.log(windDirect.innerHTML);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconID}@2x.png`
+  );
+  iconInfo.innerHTML = response.data.weather[0].description;
+  highTemp.innerHTML = Math.round(HighTemp);
+  lowTemp.innerHTML = Math.round(LowTemp);
+  //FUnction Calls for Funny sayings function
+  let Ftemp = temp.innerHTML;
+  Funny(Ftemp);
+  let InfoIcon = iconInfo.innerHTML;
+  FunnyPT2(InfoIcon);
+}
