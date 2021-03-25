@@ -66,64 +66,19 @@ function change_city(event) {
 let form = document.querySelector(".form");
 form.addEventListener("submit", change_city);
 
-//Bonus Feature #3
-//Display a fake temperature (i.e 17) in Celsius and add a link to
-//convert it to Fahrenheit. When clicking on it, it should convert
-//the temperature to Fahrenheit. When clicking on Celsius, it
-//should convert it back to Celsius.
-
-//When celsius is clicked its converted from Fahrenheit to celsius
-function ConvertToC(event) {
+//Location functions uses the Geolocation Api and searches by the given coordinates of the longitude and Latitude.
+function location(event) {
   event.preventDefault();
-  let temp = document.querySelector(".current");
-  // let Ftemp = temp.innerHTML;
-  // //°C = (°F - 32) x 5 ÷ 9
-  // let convertFtoC = Math.floor(((Ftemp - 32) * 5) / 9);
-  temp.innerHTML = `24℃`;
-  //return temp.innerHTML;
-}
-let element = document.querySelector("#celsius");
-element.addEventListener("click", ConvertToC);
-//When fahrenheit is clicked its converted from celsius to fahrenheit
-function ConvertToF(event) {
-  //°F=C x 9 ÷ 5 + 32
-  event.preventDefault();
-  let temp = document.querySelector(".current");
-  // let temp2 = temp.innerHTML;
-  // let convertCtoF = Math.floor(temp2 * 1.8 + 32);
-  temp.innerHTML = `76℉`;
-  //return temp.innerHTML;
-}
-
-element = document.querySelector("#Fahrenheit");
-element.addEventListener("click", ConvertToF);
-
-//Bonus Point #5
-//Add a Current Location button. When clicking on it,
-//it uses the Geolocation API to get your GPS coordinates
-//and display the city and current temperature using the OpenWeather API.
-function currentLocationButton() {
   function ShowLocation(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
-    let units = "imperial";
-    let apiKey = "470566c1acab67fed5787c420158691b";
     let apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
-    //console.log(apiURL);
-    axios.get(apiURL).then(ShowTemp);
+    axios.get(apiURL).then(ShowCityTemp);
+    //this portion is for forecast
+    apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`;
+    axios.get(apiURL).then(ShowForecast);
   }
   navigator.geolocation.getCurrentPosition(ShowLocation);
-  function ShowTemp(response) {
-    console.log(response);
-    let location = document.querySelector("h2");
-    location.innerHTML = response.data.name;
-    //console.log(location.innerHTML);
-
-    let weather = document.querySelector(".current");
-    weather.innerHTML = Math.floor(response.data.main.temp);
-
-    console.log(weather.innerHTML);
-  }
 }
 let button = document.querySelector("#current-city");
-button.addEventListener("click", currentLocationButton);
+button.addEventListener("click", location);
