@@ -128,3 +128,42 @@ function ShowCityTemp(response) {
   let InfoIcon = iconInfo.innerHTML;
   FunnyPT2(InfoIcon);
 }
+
+//Funny southern sayings that change according to temperature or temperature description.
+//THESE ARE BY TEMPERATURE
+function Funny(temp) {
+  let FunSay = document.querySelector(".funny-body");
+  if (temp >= 95) {
+    FunSay.innerHTML =
+      "Its so hot you finna sweat more than a sinner in church on Sunday 😂.";
+  } else if (temp >= 80 && temp < 95) {
+    FunSay.innerHTML =
+      "Its hotter than four fat chicks sitting in the car with the windows rolled up😂";
+  } else if (temp <= 79 && temp >= 70) {
+    FunSay.innerHTML =
+      "Well butter my butt  and call me a biscuit! Y'all got some good weather out there today!😎😎";
+  } else if (temp <= 69 && temp >= 46) {
+    FunSay.innerHTML =
+      "THis weather so cool it doesn't know if should be Kool with a K or Cool with a C. 👀";
+  } else if (temp <= 45 && temp >= 36) {
+    FunSay.innerHTML =
+      "its so cold, I saw a politican with his hands in his own pockets🥶🤣😂";
+  } else if (temp <= 35) {
+    FunSay.innerHTML =
+      "its so damn cold outside i just farted snowflakes🥶🤣😂";
+  }
+}
+//THESE ARE BY DESCRIPTION
+function FunnyPT2(info) {
+  let FunSay = document.querySelector(".funny-body");
+  if (info === "rain" || info === "light rain" || info === "heavy rain") {
+    FunSay.innerHTML = "its raining like a cow pissing on a flat rock ☔";
+  } else if (info === "thunderstorm") {
+    FunSay.innerHTML =
+      "Its raining cats and dogs out there. Get somewhere and sat down and let the lord do his part. 🙃😲😩";
+  } else if (info === "snow") {
+    FunSay.innerHTML =
+      "I heard its snowing this weekend, but I'm from the south so that's none of my business 🐸☕.";
+  }
+}
+
