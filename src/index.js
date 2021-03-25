@@ -197,3 +197,64 @@ function ShowForecast(response) {
   </div>`;
   }
 }
+
+// FUnction converts the fahrenheit temp to celsius once its clicked.
+//Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
+function ConvertToC(event) {
+  event.preventDefault();
+  //fix switching
+  // Felement.classList.remove("active");
+  // Celement.classList.add("active");
+  //°C = (°F - 32) x 5 ÷ 9
+  let tempElement = document.querySelector(".current");
+  let Ctemp = ((FahrenheitTemp - 32) * 5) / 9;
+  let HighCTemp = ((HighTemp - 32) * 5) / 9;
+  let LowCTemp = ((LowTemp - 32) * 5) / 9;
+  let ForeTemp = ((ForecastTemp - 32) * 5) / 9;
+  let ForeHighC = ((ForecastHigh - 32) * 5) / 9;
+  let ForeLowC = ((ForecastLow - 32) * 5) / 9;
+  tempElement.innerHTML = Math.round(Ctemp);
+  //when cel is clicked turn low and high temps to celsius
+  let HighElement = document.querySelector("#high");
+  HighElement.innerHTML = Math.round(HighCTemp);
+  let LowElement = document.querySelector("#low");
+  LowElement.innerHTML = Math.round(LowCTemp);
+  let Temp2Element = document.querySelector(".temp2");
+  Temp2Element.innerHTML = Math.round(ForeTemp);
+  let ForeHighElement = document.querySelector("#high2");
+  ForeHighElement.innerHTML = Math.round(ForeHighC);
+  let ForeLowElement = document.querySelector("#low2");
+  ForeLowElement.innerHTML = Math.round(ForeLowC);
+}
+//GLobal declared vairables to access the temperature from the city that was searched.
+let FahrenheitTemp = null;
+let HighTemp = null;
+let LowTemp = null;
+let ForecastTemp = null;
+let ForecastHigh = null;
+let ForecastLow = null;
+//This function converts the celsius temperature back to Fahrenheit once its clicked.
+//Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
+function ConvertToF(event) {
+  event.preventDefault();
+  //Felement.classList.add("active");
+  //Celement.classList.remove("active");
+  let tempElement = document.querySelector(".current");
+  tempElement.innerHTML = Math.round(FahrenheitTemp);
+  let HighElement = document.querySelector("#high");
+  HighElement.innerHTML = Math.round(HighTemp);
+  let LowElement = document.querySelector("#low");
+  LowElement.innerHTML = Math.round(LowTemp);
+  let Temp2Element = document.querySelector(".temp2");
+  Temp2Element.innerHTML = Math.round(ForecastTemp);
+  let ForeHighElement = document.querySelector("#high2");
+  ForeHighElement.innerHTML = Math.round(ForecastHigh);
+  let ForeLowElement = document.querySelector("#low2");
+  ForeLowElement.innerHTML = Math.round(ForecastLow);
+}
+
+let Felement = document.querySelector("#celsius");
+Felement.addEventListener("click", ConvertToC);
+
+let Celement = document.querySelector("#Fahrenheit");
+Celement.addEventListener("click", ConvertToF);
