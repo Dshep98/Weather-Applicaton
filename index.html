@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="weather-border">
-        <h1>Welcome to Dom's Weather</h1>
+    <div class="container"> 
+      <h1>Welcome to Dom's Weather</h1>
         <p>Where you get weather from anywhere and funny southern sayings!😁</p>
         <hr />
+      <div class="weather-border">
         <form class="form">
           <div class="row">
             <div class="col-9">
@@ -25,7 +25,7 @@
                 type="search"
                 class="form-control"
                 placeholder="Enter a city"
-                autocomplete="off"
+                autocomplete="on"
                 id="city-input"
               />
             </div>
@@ -43,107 +43,82 @@
           </div>
         </form>
         <div class="row">
-          <div class="col-3" id="city">
-            <h2 class="city">Dallas</h2>
-          </div>
-          <div class="col-3">
+          <div class="col-4" id="city">
+              <div class="city">
+                  <h2>
+                     Dallas
+                  </h2>
+                   
+                </div>
+            </div>
+          <div class="col-4">
             <div class="DT-card">
-              <div class="card-body">
-                Day:
-                <br />
-                <span class="time"> Time: 08:41am </span>
+              <div class="date-body">
+                <span>
+                  Date: <span id="full-date">01/17/21</span>
+                </span> <br>
+                Last Updated: <span id="time">
+                  08:41am
+               </span>
+               <br><br>
+                Wind : <span id="direction">
+                  direction 
+                </span><span id="wind">24</span>  
+                mph </br> Humidity: 
+                <span id="precip">82 </span>%
+
               </div>
             </div>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <div class="TEMP-card">
-              <div class="card-body">
-                Current Weather: <br />
-                SUNNY
-                <br />☀<br />
-                <span class="current"> 76 </span>
-                <br />
-                <span id="celsius"><a href="#">℃ |</a></span>
-                <span id="Fahrenheit"><a href="#">℉</a></span>
+              <div class="Temp-body">
+                <strong>
+                  Current Weather:
+                </strong>  <br>
+                <span id="iconInfo"> SUNNY<br /> </span>
+                <span>
+                  <img
+                    id="icon"
+                    src="https://th.bing.com/th/id/OIP.O-pGCwO_L5AUh8R1_9yLLwHaFi?pid=ImgDet&rs=1"
+                    alt="weather icon"
+                  />
+                  <br />
+                </span>
+                <span class="current"> 
+                  76 
+                </span>
+                <span id="Fahrenheit"><a href="#" class="active">℉ </a></span>|
+                <span id="celsius"><a href="#">℃ </a></span>
+                
                 <br />
                 H:
-                <span class="high"> 95° </span>
+                <span class="high" id="high">
+                  95
+                </span>°
                 L:
-                <span id="low"> 75° </span>
+                <span id="low">
+                  75
+                </span>°
               </div>
             </div>
           </div>
-        </div>
-        <hr />
+    
         <div class="row">
           <div class="col">
             <div class="funny_saying-card">
-              <div class="card-body">
+              <div class="funny-body">
                 I heard its snowing this weekend, but I'm from the south so
                 that's none of my business 🐸☕.
               </div>
             </div>
           </div>
         </div>
-        <hr />
-        <div class="row">
-          <div class="col-2">
-            <div class="D1-card">
-              <div class="D-body">
-                Day 1:<br />
-                65° <br />
-                Rain <br />
-                🌧<br />
-                H: 75° L: 55°
-              </div>
-            </div>
+        
+        
+        <div class="row" id=forecast>
           </div>
-          <div class="col-2">
-            <div class="D2-card">
-              <div class="D-body">
-                Day 2: <br />
-                63° <br />
-                Windy <br />
-                💨<br />
-                H: 75° L: 60°
-              </div>
-            </div>
-          </div>
-          <div class="col-2">
-            <div class="D3-card">
-              <div class="D-body">
-                Day 3:<br />
-                70° <br />
-                Cloudy <br />
-                ☁<br />
-                H: 72° L: 57°
-              </div>
-            </div>
-          </div>
-          <div class="col-2">
-            <div class="D4-card">
-              <div class="D-body">
-                Day 4: <br />
-                75°<br />
-                Partly Cloudy <br />
-                ⛅<br />
-                H: 70° L: 75°
-              </div>
-            </div>
-          </div>
-          <div class="col-2">
-            <div class="D5-card">
-              <div class="D-body">
-                Day 5:<br />
-                95°<br />
-                SUNNY <br />
-                ☀<br />
-                H: 95° L: 75°
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr />
+       
       </div>
     </div>
 
