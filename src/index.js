@@ -49,41 +49,20 @@ function FormatHours(timestamp) {
   return ` ${hours}:${min} `;
 }
 
-//Feature 2 Add a search engine, when searching for a city
-//(i.e. Paris), display the city name on the page after
-//the user submits the form
+//Change city function seraches for the city entered by the user using the weather API.
 function change_city(event) {
   event.preventDefault();
   let findcity = document.querySelector("#city-input");
-
-  //console.log(findcity.value);
   let foundcity = document.querySelector("h2");
-
   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
-  //Feature 4
-  // when a user searches for a city (example: New York),
-  //it should display the name of the city on the result page and the
-  //current temperature of the city.
   let city = findcity.value;
-  //console.log(city);
   let findCity = city;
-  let units = "imperial";
-  let apiKey = "470566c1acab67fed5787c420158691b";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
-  function ShowCityTemp(response) {
-    console.log(response);
-    let temp = document.querySelector(".current");
-    temp.innerHTML = Math.floor(response.data.main.temp);
-    //Possibly othr features
-    //let highTemp = document.querySelector(".high");
-    //highTemp.innerHTML = Math.floor(response.data.main.temp_max);
-    //let low = document.querySelector(".low");
-    //low.innerHTML = Math.floor(response.data.main.temp_min);
-  }
-
   axios.get(apiURL).then(ShowCityTemp);
+  //this portion is for forecast
+  apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${findCity}&appid=${apiKey}&units=${units}`;
+  axios.get(apiURL).then(ShowForecast);
 }
-
 let form = document.querySelector(".form");
 form.addEventListener("submit", change_city);
 
