@@ -94,6 +94,37 @@ function FormatHours(timestamp) {
   return ` ${hours}:${min} `;
 }
 
+
+//This function dispalys the forecast in three hour increments from the current time.
+//Then displays time, temperature, the temp icon, and highs and lows.
+function ShowForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
+  for (let index = 0; index <= 4; index++) {
+    forecast = response.data.list[index];
+    ForecastTemp = Math.round(forecast.main.temp);
+    ForecastHigh = Math.round(forecast.main.temp_max);
+    ForecastLow = Math.round(forecast.main.temp_min);
+    forecastElement.innerHTML += `
+  <div class="col-2">
+  <div class="D1-card">
+    <div class="D-body">
+       ${FormatHours(forecast.dt * 1000)}<br /> 
+       <span class=temp2>
+      ${ForecastTemp}°
+      </span> <br />
+      ${response.data.list[0].weather[0].description} <br />
+      <img
+      src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+      <br />
+      <br/>
+      H: <strong id="high2"> ${ForecastHigh}°</strong> 
+      L: <span id="low2"> ${ForecastLow}°</span>
+    </div>
+  </div>`;
+  }
+}
 //Change city function seraches for the city entered by the user using the weather API.
 function change_city(event) {
   event.preventDefault();
@@ -128,36 +159,6 @@ function location(event) {
 let button = document.querySelector("#current-city");
 button.addEventListener("click", location);
 
-//This function dispalys the forecast in three hour increments from the current time.
-//Then displays time, temperature, the temp icon, and highs and lows.
-function ShowForecast(response) {
-  let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = null;
-  let forecast = null;
-  for (let index = 0; index <= 4; index++) {
-    forecast = response.data.list[index];
-    ForecastTemp = Math.round(forecast.main.temp);
-    ForecastHigh = Math.round(forecast.main.temp_max);
-    ForecastLow = Math.round(forecast.main.temp_min);
-    forecastElement.innerHTML += `
-  <div class="col-2">
-  <div class="D1-card">
-    <div class="D-body">
-       ${FormatHours(forecast.dt * 1000)}<br /> 
-       <span class=temp2>
-      ${ForecastTemp}°
-      </span> <br />
-      ${response.data.list[0].weather[0].description} <br />
-      <img
-      src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
-      <br />
-      <br/>
-      H: <strong id="high2"> ${ForecastHigh}°</strong> 
-      L: <span id="low2"> ${ForecastLow}°</span>
-    </div>
-  </div>`;
-  }
-}
 
 // FUnction converts the fahrenheit temp to celsius once its clicked.
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
