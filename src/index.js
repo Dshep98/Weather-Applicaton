@@ -18,36 +18,6 @@ for (let index = 0; index <= 4; index++) {
 </div>
 </div>`;
 }
-//Days array to access the day of the week by name.
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-let update = new Date();
-//Day and Time Format for Todays Date.
-function formatDate(time) {
-  update = new Date(time);
-  let day = update.getDay();
-  return ` ${days[day]} | ${FormatHours(update)} `;
-}
-//This function takes in the timestamp of the city and formats it.
-function FormatHours(timestamp) {
-  let time = new Date(timestamp);
-  let hours = time.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let min = time.getMinutes();
-  if (min < 10) {
-    min = `0${min}`;
-  }
-  return ` ${hours}:${min} `;
-}
 //This function displays all the features that come with the city.
 //It produces the temperature, Date, weather description/icons, Highs/Lows, and Wind/Humidity;
 function ShowCityTemp(response) {
@@ -93,6 +63,37 @@ function ShowCityTemp(response) {
   let InfoIcon = iconInfo.innerHTML;
   FunnyPT2(InfoIcon);
 }
+//Days array to access the day of the week by name.
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let update = new Date();
+//Day and Time Format for Todays Date.
+function formatDate(time) {
+  update = new Date(time);
+  let day = update.getDay();
+  return ` ${days[day]} | ${FormatHours(update)} `;
+}
+//This function takes in the timestamp of the city and formats it.
+function FormatHours(timestamp) {
+  let time = new Date(timestamp);
+  let hours = time.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let min = time.getMinutes();
+  if (min < 10) {
+    min = `0${min}`;
+  }
+  return ` ${hours}:${min} `;
+}
+
 //Change city function seraches for the city entered by the user using the weather API.
 function change_city(event) {
   event.preventDefault();
@@ -126,10 +127,6 @@ function location(event) {
 }
 let button = document.querySelector("#current-city");
 button.addEventListener("click", location);
-
-
-
-
 
 //This function dispalys the forecast in three hour increments from the current time.
 //Then displays time, temperature, the temp icon, and highs and lows.
