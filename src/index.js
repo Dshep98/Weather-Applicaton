@@ -157,7 +157,7 @@ function located_Coords(event) {
   navigator.geolocation.getCurrentPosition(ShowLocation);
 }
 let button = document.querySelector("#current-city");
-button.addEventListener("click", location_Coords);
+button.addEventListener("click", located_Coords);
 
 
 // FUnction converts the fahrenheit temp to celsius once its clicked.
