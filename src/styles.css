@@ -113,8 +113,11 @@ img {
 }
 span.current {
   display: block;
+      margin-top: -20px;
 }
-
+strong.current-weather {
+  font-size: 23px;
+}
 hr {
   margin: 1rem 0;
   color: inherit;
