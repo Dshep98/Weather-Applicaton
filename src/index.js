@@ -116,11 +116,13 @@ function ShowForecast(response) {
   <div class="col-2">
   <div class="D1-card">
     <div class="D-body">
+    <strong>
        ${FormatHours(forecast.dt * 1000)}<br /> 
+       </strong>
        <span class=temp2>
       ${ForecastTemp}°
       </span> <br />
-      ${response.data.list[0].weather[0].description} <br />
+      ${response.data.list[0].weather[0].description.toUpperCase()} <br />
       <img
       src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
       <br />
