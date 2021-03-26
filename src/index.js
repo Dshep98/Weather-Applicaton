@@ -28,8 +28,8 @@ function ShowCityTemp(response) {
   let year = update.getFullYear();
   let fullDate = `${month}/${Day}/${year}`;
   let dateElement = document.querySelector("#time");
+  let windDirect = document.querySelector("#direction");
   let wind = document.querySelector("#wind");
-  //let windDirect = document.querySelector("#direction");
   let precip = document.querySelector("#precip");
   let temp = document.querySelector(".current");
   let iconElement = document.querySelector("#icon");
@@ -46,10 +46,9 @@ function ShowCityTemp(response) {
   temp.innerHTML = Math.round(FahrenheitTemp);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   FullDate.innerHTML = fullDate;
+   windDirect.innerHTML = response.data.wind.deg;
   wind.innerHTML = Math.round(response.data.wind.speed);
   precip.innerHTML = response.data.main.humidity;
-  //windDirect.innerHTML = response.data.wind.deg;
-  //console.log(windDirect.innerHTML);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${iconID}@2x.png`
@@ -62,6 +61,10 @@ function ShowCityTemp(response) {
   Funny(Ftemp);
   let InfoIcon = iconInfo.innerHTML;
   FunnyPT2(InfoIcon);
+  //Function for wind direcitions
+  let windCode = windDirect.innerHTML;
+  windDirection(windCode);
+  console.log(windCode);
 }
 //Days array to access the day of the week by name.
 let days = [
@@ -256,5 +259,60 @@ function FunnyPT2(info) {
   } else if (info === "snow") {
     FunSay.innerHTML =
       "I heard its snowing this weekend, but I'm from the south so that's none of my business 🐸☕.";
+  }
+}
+//This function is used to determine the direction of the wind 
+//in terms on North,South,East,or West and matches it with the specified code thats passed in.
+//it goes down the line to make comparisons and if it matches it sets the innerHTML to what the code matched with.
+function windDirection(windCode) {
+  let windDirect = document.querySelector("#direction");
+  if (windCode >= 11.25 && windCode <= 33.75) {
+    windCode = "NNE";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 33.75 && windCode <= 56.25) {
+    windCode = "NNE";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 56.25 && windCode <= 78.75) {
+    windCode = "ENE";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 78.75 && windCode <= 101.25) {
+    windCode = "E";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 101.25 && windCode <= 123.75) {
+    windCode = "ESE";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 123.75 && windCode <= 146.25) {
+    windCode = "SE";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 146.25 && windCode <= 168.75) {
+    windCode = "SSE";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 168.75 && windCode <= 191.25) {
+    windCode = "S";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 191.25 && windCode <= 213.75) {
+    windCode = "SSW";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 213.75 && windCode <= 236.25) {
+    windCode = "SW";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 236.25 && windCode <= 258.75) {
+    windCode = "WSW";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 258.75 && windCode <= 281.25) {
+    windCode = "W";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 281.25 && windCode <= 303.75) {
+    windCode = "WNW";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 303.75 && windCode <= 326.25) {
+    windCode = "NW";
+    windDirect.innerHTML = windCode;
+  } else if (windCode >= 326.25 && windCode <= 348.75) {
+    windCode = "NNW";
+    windDirect.innerHTML = windCode;
+  } else {
+    windCode = "N";
+    windDirect.innerHTML = windCode;
   }
 }
