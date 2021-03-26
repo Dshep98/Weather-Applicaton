@@ -38,9 +38,11 @@ function ShowCityTemp(response) {
   //Added in highs/lows for celsius once its clicked.
   let highTemp = document.querySelector("#high");
   let lowTemp = document.querySelector("#low");
+  let RealFeel = document.querySelector("#Real-feel");
   FahrenheitTemp = response.data.main.temp;
   HighTemp = response.data.main.temp_max;
   LowTemp = Math.round(response.data.main.temp_min);
+  Feel = response.data.main.feels_like;
   ////////////////////////////////////////////////////
   located_city.innerHTML = response.data.name;
   temp.innerHTML = Math.round(FahrenheitTemp);
@@ -56,6 +58,7 @@ function ShowCityTemp(response) {
   iconInfo.innerHTML = response.data.weather[0].description.toUpperCase();
   highTemp.innerHTML = Math.round(HighTemp);
   lowTemp.innerHTML = Math.round(LowTemp);
+  RealFeel.innerHTML = Math.round(Feel);
   //FUnction Calls for Funny sayings function
   let Ftemp = temp.innerHTML;
   Funny(Ftemp);
@@ -178,6 +181,7 @@ function ConvertToC(event) {
   let ForeTemp = ((ForecastTemp - 32) * 5) / 9;
   let ForeHighC = ((ForecastHigh - 32) * 5) / 9;
   let ForeLowC = ((ForecastLow - 32) * 5) / 9;
+  let FeelCTemp = ((Feel - 32) * 5) / 9;
   tempElement.innerHTML = Math.round(Ctemp);
   //when cel is clicked turn low and high temps to celsius
   let HighElement = document.querySelector("#high");
@@ -190,6 +194,8 @@ function ConvertToC(event) {
   ForeHighElement.innerHTML = Math.round(ForeHighC);
   let ForeLowElement = document.querySelector("#low2");
   ForeLowElement.innerHTML = Math.round(ForeLowC);
+  let FeelElement = document.querySelector("#Real-feel");
+  FeelElement.innerHTML = Math.round(FeelCTemp);
 }
 //GLobal declared vairables to access the temperature from the city that was searched.
 let FahrenheitTemp = null;
@@ -198,6 +204,7 @@ let LowTemp = null;
 let ForecastTemp = null;
 let ForecastHigh = null;
 let ForecastLow = null;
+let Feel = null;
 //This function converts the celsius temperature back to Fahrenheit once its clicked.
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
 function ConvertToF(event) {
@@ -216,6 +223,8 @@ function ConvertToF(event) {
   ForeHighElement.innerHTML = Math.round(ForecastHigh);
   let ForeLowElement = document.querySelector("#low2");
   ForeLowElement.innerHTML = Math.round(ForecastLow);
+  let FeelElement = document.querySelector("#Real-feel");
+  FeelElement.innerHTML = Math.round(Feel);
 }
 
 let Felement = document.querySelector("#celsius");
