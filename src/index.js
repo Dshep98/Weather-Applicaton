@@ -53,7 +53,7 @@ function ShowCityTemp(response) {
     "src",
     `http://openweathermap.org/img/wn/${iconID}@2x.png`
   );
-  iconInfo.innerHTML = response.data.weather[0].description;
+  iconInfo.innerHTML = response.data.weather[0].description.toUpperCase();
   highTemp.innerHTML = Math.round(HighTemp);
   lowTemp.innerHTML = Math.round(LowTemp);
   //FUnction Calls for Funny sayings function
