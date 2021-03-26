@@ -4,10 +4,13 @@ body {
 h1 {
   text-align: center;
   color: dodgerblue;
+  font-weight: bolder;
 }
 p {
   text-align: center;
-  color: #ffcd00;
+  color: grey;
+  font-size: 24px;
+  font-weight: bolder;
 }
 .weather-border {
   border: none;
@@ -15,7 +18,7 @@ p {
   padding: 15px;
   border-radius: 5px;
   width: auto;
-  height: 575px;
+  height: 700px;
   background: linear-gradient(
     -45deg,
     #1d71f2,
@@ -158,7 +161,7 @@ span.current {
 }
 
 a:link {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .TEMP-card .active {
   color: black;
