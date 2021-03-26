@@ -88,7 +88,7 @@ div.date-body {
   border-width: thin;
   text-align: center;
   line-height: 30px;
-  font-size: 18px;
+  font-size: 25px;
 }
 
 .TEMP-card {
@@ -127,7 +127,7 @@ hr {
   margin-top: 50px;
   margin-bottom: 40px;
   padding: 5px 20px 5px 20px;
-  font-size: large;
+  font-size: x-large;
 }
 .col-2 {
   width: 20%;
