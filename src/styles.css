@@ -158,7 +158,7 @@ span.current {
 }
 
 a:link {
-  text-decoration: none;
+  text-decoration: underline;
 }
 .TEMP-card .active {
   color: black;
