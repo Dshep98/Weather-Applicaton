@@ -1,16 +1,16 @@
 body {
-  font-family: sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
 }
 h1 {
   text-align: center;
-  color: #f76b8a;
+  color: dodgerblue;
 }
 p {
   text-align: center;
-  color: #6d42c7;
+  color: #ffcd00;
 }
 .weather-border {
-  border: 5px solid rgb(247, 107, 138);
+  border: none;
   margin: 28px;
   padding: 15px;
   border-radius: 5px;
@@ -25,7 +25,7 @@ p {
     #ffcd00
   );
   background-size: 400% 400%;
-  animation: gradient 45s ease infinite;
+  animation: gradient 17s ease infinite;
 }
 @keyframes gradient {
   0% {
@@ -39,20 +39,21 @@ p {
   }
 }
 h2 {
+  font-size: -webkit-xxx-large;
   display: block;
   margin: auto;
   position: relative;
-  top: 65px;
-  right: -55px;
-  text-align: auto;
+  top: 45px;
+  right: -35px;
 }
 div.city {
   position: relative;
   top: 15px;
   right: -00%;
   width: auto;
-  border: 5px solid rgb(247, 107, 138);
+  border: 5px solid grey;
   border-radius: 50%;
+  border-width: thin;
   height: 95%;
 }
 
@@ -63,7 +64,7 @@ div.city {
   line-height: 15px;
   width: 100px;
   color: #fff;
-  background-color: rgb(247, 107, 138);
+  background-color: grey;
   border-color: #0d6efd;
 }
 .btn-secondary {
@@ -74,7 +75,7 @@ div.city {
   width: 100px;
   color: #fff;
   background-color: #0d6efd;
-  border-color: rgb(247, 107, 138);
+  border-color: grey;
 }
 
 div.date-body {
@@ -82,10 +83,12 @@ div.date-body {
   top: 15px;
   right: -00%;
   width: auto;
-  border: 5px solid rgb(247, 107, 138);
-  border-radius: 2%;
-  height: 75%;
+  border: 5px solid grey;
+  border-radius: 1%;
+  border-width: thin;
   text-align: center;
+  line-height: 30px;
+  font-size: 23px;
 }
 
 .TEMP-card {
@@ -95,7 +98,8 @@ div.date-body {
   top: 15px;
   right: -00%;
   width: auto;
-  border: 5px solid rgb(247, 107, 138);
+  border: 5px solid grey;
+  border-width: thin;
   height: 100%;
 }
 img {
@@ -111,22 +115,26 @@ span.current {
 hr {
   margin: 1rem 0;
   color: inherit;
-  margin-bottom: 70px;
+  margin-bottom: 7px;
   background-color: currentColor;
   border: 0;
   opacity: 0.25;
 }
 .funny_saying-card {
   position: relative;
-  border: 5px solid rgb(247, 107, 138);
+  border: 5px solid grey;
+  border-width: thin;
   margin-top: 50px;
   margin-bottom: 40px;
   padding: 5px 20px 5px 20px;
+  font-size: x-large;
 }
 .col-2 {
   width: 20%;
-  border: 5px solid rgb(247, 107, 138);
+  border: 5px solid grey;
+  border-width: thin;
   text-align: center;
+  background: linear-gradient(45deg, grey, transparent);
 }
 
 .form-control {
