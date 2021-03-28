@@ -23,11 +23,11 @@ function formatDate(time) {
 // then sets the day to the specified time if its over midnight or one am the day changes to next day.
 function formatDateDay(timestamp) {
   let Update = new Date(timestamp);
-  let dayz = Update.getDay() - 1;
+  let dayz = Update.getDay(- 1) ;
   let dayHour = Update.getHours();
   console.log(dayHour);
   if (dayHour >= 0 || dayHour === 1) {
-    dayz = Update.getDay() + 1;
+    dayz = Update.getDay();
     return ` ${days[dayz]} `;
   }
   return ` ${days[dayz]} `;
