@@ -383,5 +383,5 @@ Celement.addEventListener("click", ConvertToC);
 let Felement = document.querySelector("#Fahrenheit");
 Felement.addEventListener("click", ConvertToF);
 
-change_city("Dominican Republic");
+change_city("panama city");
 
