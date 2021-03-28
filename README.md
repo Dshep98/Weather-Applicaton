@@ -1,7 +1,7 @@
 ## Weather-Applicaton
 ### Description:
 
-This program is a real-life weather application that's easy to use and uses real-time data from a [ Weather API](https://openweathermap.org/) to collect information for features that usually come with finding the weather such as: city thats being searched, current location, temperature in Fahrenheit or Celsius, high/lows, 5 day forecast,etc.Instead of a normal weather app this one gives funny southern sayings according to the change in temperature of the weather.
+This program is a real-life weather application that's easy. It uses real-time data from a [ Weather API](https://openweathermap.org/) to collect information for features that usually come with finding the weather such as: a city thats being searched, current location, temperature in Fahrenheit or Celsius, high/lows, 5 day forecast,etc.Instead of a normal weather app this one gives funny southern sayings according to the change in temperature of the weather.
 
 ### Instructions
  - The program was ran and edited in [VSCODE](https://code.visualstudio.com/)
@@ -11,9 +11,9 @@ This program is a real-life weather application that's easy to use and uses real
 
 |   #   | File                       | Description                                                |
 | :---: | -------------------------- | ---------------------------------------------------------- |
-|   1   | [styles.css](./styles.css) | CSS file |
-|   2   | [index.js](./index.js)     | Java Script file |
-|   3   | [index.html](./index.html) | HTML file |
+|   1   | [styles.css](https://github.com/Dshep98/Weather-Applicaton/blob/main/src/styles.css) | CSS file |
+|   2   | [index.js](https://github.com/Dshep98/Weather-Applicaton/blob/main/src/index.js)     | Java Script file |
+|   3   | [index.html](https://github.com/Dshep98/Weather-Applicaton/blob/main/index.html)     | HTML file |
 
 
 ### Sources
