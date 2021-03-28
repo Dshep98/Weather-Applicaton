@@ -1,38 +1,23 @@
 //GLobal declared vairables for api urls
 let units = "imperial";
 let apiKey = "470566c1acab67fed5787c420158691b";
-//Days array to access the day of the week by name.
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-let update = new Date();
-//Day and Time Format for Todays Date.
-function formatDate(time) {
-  update = new Date(time);
-  let day = update.getDay();
-  return ` ${days[day]} | ${FormatHours(update)} `;
-}
 
-//This function takes in the timestamp of the city and formats it.
-function FormatHours(timestamp) {
-  let time = new Date(timestamp);
-  let hours = time.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let min = time.getMinutes();
-  if (min < 10) {
-    min = `0${min}`;
-  }
-  return ` ${hours}:${min} `;
+//Default Forecast
+let forecastElement = document.querySelector("#forecast");
+forecastElement.innerHTML = null;
+for (let index = 0; index <= 4; index++) {
+  forecastElement.innerHTML += `<div class="col-2">
+<div class="D1-card">
+  <div class="D-body">
+    Day 1:<br />
+    65° <br />
+    Rain <br />
+    🌧<br />
+    H: 75° L: 55°
+  </div>
+</div>
+</div>`;
 }
-
 //This function displays all the features that come with the city.
 //It produces the temperature, Date, weather description/icons, Highs/Lows, and Wind/Humidity;
 function ShowCityTemp(response) {
@@ -54,13 +39,10 @@ function ShowCityTemp(response) {
   let highTemp = document.querySelector("#high");
   let lowTemp = document.querySelector("#low");
   let RealFeel = document.querySelector("#Real-feel");
-  let sunrise = document.querySelector("#sunrise");
-  let sunset = document.querySelector("#sunset");
   FahrenheitTemp = response.data.main.temp;
   HighTemp = response.data.main.temp_max;
   LowTemp = Math.round(response.data.main.temp_min);
   Feel = response.data.main.feels_like;
-  
   ////////////////////////////////////////////////////
   located_city.innerHTML = response.data.name;
   temp.innerHTML = Math.round(FahrenheitTemp);
@@ -77,8 +59,6 @@ function ShowCityTemp(response) {
   highTemp.innerHTML = Math.round(HighTemp);
   lowTemp.innerHTML = Math.round(LowTemp);
   RealFeel.innerHTML = Math.round(Feel);
-   sunrise.innerHTML = FormatHours(response.data.sys.sunrise * 1000);
-  sunset.innerHTML = FormatHours(response.data.sys.sunset * 1000);
   //FUnction Calls for Funny sayings function
   let Ftemp = temp.innerHTML;
   Funny(Ftemp);
@@ -89,6 +69,37 @@ function ShowCityTemp(response) {
   windDirection(windCode);
   console.log(windCode);
 }
+//Days array to access the day of the week by name.
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+let update = new Date();
+//Day and Time Format for Todays Date.
+function formatDate(time) {
+  update = new Date(time);
+  let day = update.getDay();
+  return ` ${days[day]} | ${FormatHours(update)} `;
+}
+//This function takes in the timestamp of the city and formats it.
+function FormatHours(timestamp) {
+  let time = new Date(timestamp);
+  let hours = time.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let min = time.getMinutes();
+  if (min < 10) {
+    min = `0${min}`;
+  }
+  return ` ${hours}:${min} `;
+}
+
 
 //This function dispalys the forecast in three hour increments from the current time.
 //Then displays time, temperature, the temp icon, and highs and lows.
@@ -123,23 +134,21 @@ function ShowForecast(response) {
   }
 }
 //Change city function seraches for the city entered by the user using the weather API.
-function change_city(findCity) {
-  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
-  axios.get(apiURL).then(ShowCityTemp);
-  //this portion is for forecast
-  apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${findCity}&appid=${apiKey}&units=${units}`;
-  axios.get(apiURL).then(ShowForecast);
-}
-//Processes the changing of the city
-function Process_city(event) {
+function change_city(event) {
   event.preventDefault();
   let findcity = document.querySelector("#city-input");
   let foundcity = document.querySelector("h2");
   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
   let city = findcity.value;
   let findCity = city;
-  change_city(findCity);
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
+  axios.get(apiURL).then(ShowCityTemp);
+  //this portion is for forecast
+  apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${findCity}&appid=${apiKey}&units=${units}`;
+  axios.get(apiURL).then(ShowForecast);
 }
+let form = document.querySelector(".form");
+form.addEventListener("submit", change_city);
 
 //Location functions uses the Geolocation Api and searches by the given coordinates of the longitude and Latitude.
 function located_Coords(event) {
@@ -155,12 +164,17 @@ function located_Coords(event) {
   }
   navigator.geolocation.getCurrentPosition(ShowLocation);
 }
+let button = document.querySelector("#current-city");
+button.addEventListener("click", located_Coords);
 
 
 // FUnction converts the fahrenheit temp to celsius once its clicked.
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
 function ConvertToC(event) {
   event.preventDefault();
+  //fix switching
+  // Felement.classList.remove("active");
+  // Celement.classList.add("active");
   //°C = (°F - 32) x 5 ÷ 9
   let tempElement = document.querySelector(".current");
   let Ctemp = ((FahrenheitTemp - 32) * 5) / 9;
@@ -185,11 +199,20 @@ function ConvertToC(event) {
   let FeelElement = document.querySelector("#Real-feel");
   FeelElement.innerHTML = Math.round(FeelCTemp);
 }
-
+//GLobal declared vairables to access the temperature from the city that was searched.
+let FahrenheitTemp = null;
+let HighTemp = null;
+let LowTemp = null;
+let ForecastTemp = null;
+let ForecastHigh = null;
+let ForecastLow = null;
+let Feel = null;
 //This function converts the celsius temperature back to Fahrenheit once its clicked.
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
 function ConvertToF(event) {
   event.preventDefault();
+  //Felement.classList.add("active");
+  //Celement.classList.remove("active");
   let tempElement = document.querySelector(".current");
   tempElement.innerHTML = Math.round(FahrenheitTemp);
   let HighElement = document.querySelector("#high");
@@ -205,6 +228,12 @@ function ConvertToF(event) {
   let FeelElement = document.querySelector("#Real-feel");
   FeelElement.innerHTML = Math.round(Feel);
 }
+
+let Felement = document.querySelector("#celsius");
+Felement.addEventListener("click", ConvertToC);
+
+let Celement = document.querySelector("#Fahrenheit");
+Celement.addEventListener("click", ConvertToF);
 
 //Funny southern sayings that change according to temperature or temperature description.
 //THESE ARE BY TEMPERATURE
@@ -298,24 +327,3 @@ function windDirection(windCode) {
     windDirect.innerHTML = windCode;
   }
 }
-//GLobal declared vairables to access the temperature from the city that was searched.
-let FahrenheitTemp = null;
-let HighTemp = null;
-let LowTemp = null;
-let ForecastTemp = null;
-let ForecastHigh = null;
-let ForecastLow = null;
-let Feel = null;
-let form = document.querySelector(".form");
-form.addEventListener("submit", Process_city);
-
-let button = document.querySelector("#current-city");
-button.addEventListener("click", located_Coords);
-
-let Celement = document.querySelector("#celsius");
-Celement.addEventListener("click", ConvertToC);
-
-let Felement = document.querySelector("#Fahrenheit");
-Felement.addEventListener("click", ConvertToF);
-
-change_city("Dominican Republic");
