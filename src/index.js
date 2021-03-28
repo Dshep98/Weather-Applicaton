@@ -154,6 +154,10 @@ function change_city(findCity) {
   let foundcity = document.querySelector("h2");
   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
   change_city(findcity.value);
+  if (!findcity.value) {
+    alert("Field is blank.Enter a city.");
+    foundcity.innerHTML = "Null";
+  }
   }
   
 
