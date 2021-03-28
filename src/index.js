@@ -1,74 +1,6 @@
 //GLobal declared vairables for api urls
 let units = "imperial";
 let apiKey = "470566c1acab67fed5787c420158691b";
-
-//Default Forecast
-// let forecastElement = document.querySelector("#forecast");
-// forecastElement.innerHTML = null;
-// for (let index = 0; index <= 4; index++) {
-//   forecastElement.innerHTML += `<div class="col-2">
-// <div class="D1-card">
-//   <div class="D-body">
-//     Day 1:<br />
-//     65° <br />
-//     Rain <br />
-//     🌧<br />
-//     H: 75° L: 55°
-//   </div>
-// </div>
-// </div>`;
-// }
-//This function displays all the features that come with the city.
-//It produces the temperature, Date, weather description/icons, Highs/Lows, and Wind/Humidity;
-function ShowCityTemp(response) {
-  let located_city = document.querySelector("h2");
-  let FullDate = document.querySelector("#full-date");
-  let month = update.getMonth() + 1;
-  let Day = update.getDate();
-  let year = update.getFullYear();
-  let fullDate = `${month}/${Day}/${year}`;
-  let dateElement = document.querySelector("#time");
-  let windDirect = document.querySelector("#direction");
-  let wind = document.querySelector("#wind");
-  let precip = document.querySelector("#precip");
-  let temp = document.querySelector(".current");
-  let iconElement = document.querySelector("#icon");
-  let iconInfo = document.querySelector("#iconInfo");
-  let iconID = response.data.weather[0].icon;
-  //Added in highs/lows for celsius once its clicked.
-  let highTemp = document.querySelector("#high");
-  let lowTemp = document.querySelector("#low");
-  let RealFeel = document.querySelector("#Real-feel");
-  FahrenheitTemp = response.data.main.temp;
-  HighTemp = response.data.main.temp_max;
-  LowTemp = Math.round(response.data.main.temp_min);
-  Feel = response.data.main.feels_like;
-  ////////////////////////////////////////////////////
-  located_city.innerHTML = response.data.name;
-  temp.innerHTML = Math.round(FahrenheitTemp);
-  dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  FullDate.innerHTML = fullDate;
-   windDirect.innerHTML = response.data.wind.deg;
-  wind.innerHTML = Math.round(response.data.wind.speed);
-  precip.innerHTML = response.data.main.humidity;
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${iconID}@2x.png`
-  );
-  iconInfo.innerHTML = response.data.weather[0].description.toUpperCase();
-  highTemp.innerHTML = Math.round(HighTemp);
-  lowTemp.innerHTML = Math.round(LowTemp);
-  RealFeel.innerHTML = Math.round(Feel);
-  //FUnction Calls for Funny sayings function
-  let Ftemp = temp.innerHTML;
-  Funny(Ftemp);
-  let InfoIcon = iconInfo.innerHTML;
-  FunnyPT2(InfoIcon);
-  //Function for wind direcitions
-  let windCode = windDirect.innerHTML;
-  windDirection(windCode);
-  console.log(windCode);
-}
 //Days array to access the day of the week by name.
 let days = [
   "Sunday",
@@ -99,6 +31,57 @@ function FormatHours(timestamp) {
   }
   return ` ${hours}:${min} `;
 }
+//This function displays all the features that come with the city.
+//It produces the temperature, Date, weather description/icons, Highs/Lows, and Wind/Humidity;
+function ShowCityTemp(response) {
+  let located_city = document.querySelector("h2");
+  let FullDate = document.querySelector("#full-date");
+  let month = update.getMonth() + 1;
+  let Day = update.getDate();
+  let year = update.getFullYear();
+  let fullDate = `${month}/${Day}/${year}`;
+  let dateElement = document.querySelector("#time");
+  let windDirect = document.querySelector("#direction");
+  let wind = document.querySelector("#wind");
+  let precip = document.querySelector("#precip");
+  let temp = document.querySelector(".current");
+  let iconElement = document.querySelector("#icon");
+  let iconInfo = document.querySelector("#iconInfo");
+  let iconID = response.data.weather[0].icon;
+  let highTemp = document.querySelector("#high");
+  let lowTemp = document.querySelector("#low");
+  let RealFeel = document.querySelector("#Real-feel");
+  ////////////////////////////////////////////////////
+  FahrenheitTemp = response.data.main.temp;
+  HighTemp = response.data.main.temp_max;
+  LowTemp = Math.round(response.data.main.temp_min);
+  Feel = response.data.main.feels_like;
+  located_city.innerHTML = response.data.name;
+  temp.innerHTML = Math.round(FahrenheitTemp);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  FullDate.innerHTML = fullDate;
+  windDirect.innerHTML = response.data.wind.deg;
+  wind.innerHTML = Math.round(response.data.wind.speed);
+  precip.innerHTML = response.data.main.humidity;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${iconID}@2x.png`
+  );
+  iconInfo.innerHTML = response.data.weather[0].description.toUpperCase();
+  highTemp.innerHTML = Math.round(HighTemp);
+  lowTemp.innerHTML = Math.round(LowTemp);
+  RealFeel.innerHTML = Math.round(Feel);
+  //FUnction Calls for Funny sayings function
+  let Ftemp = temp.innerHTML;
+  Funny(Ftemp);
+  let InfoIcon = iconInfo.innerHTML;
+  FunnyPT2(InfoIcon);
+  //Function for wind direcitions
+  let windCode = windDirect.innerHTML;
+  windDirection(windCode);
+  console.log(windCode);
+}
+
 
 
 //This function dispalys the forecast in three hour increments from the current time.
@@ -172,7 +155,6 @@ function located_Coords(event) {
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
 function ConvertToC(event) {
   event.preventDefault();
-  event.preventDefault();
   Felement.classList.remove("active");
   Celement.classList.add("active");
   //°C = (°F - 32) x 5 ÷ 9
@@ -187,7 +169,6 @@ function ConvertToC(event) {
   HighElement.innerHTML = Math.round(HighCTemp);
   let LowElement = document.querySelector("#low");
   LowElement.innerHTML = Math.round(LowCTemp);
-  
   let FeelElement = document.querySelector("#Real-feel");
   FeelElement.innerHTML = Math.round(FeelCTemp);
   ///////////////////////////////////////////////////////////////////
@@ -205,11 +186,9 @@ function ConvertToC(event) {
   forecastLow.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;
-    //console.log(currentTemp);
     // convert to Celsius
     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
   });
-
   let forecastTemp = document.querySelectorAll("forecast-temp");
   forecastTemp.forEach(function (item) {
     // grabbing the current value to convert
@@ -220,17 +199,12 @@ function ConvertToC(event) {
     // convert to Celsius
     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
   });
-
   // to avoid double conversion
   Celement.removeEventListener("click", ConvertToC);
   Felement.addEventListener("click", ConvertToF);
 }
   
-//GLobal declared vairables to access the temperature from the city that was searched.
-let FahrenheitTemp = null;
-let HighTemp = null;
-let LowTemp = null;
-let Feel = null;
+
 //This function converts the celsius temperature back to Fahrenheit once its clicked.
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
 function ConvertToF(event) {
@@ -273,20 +247,6 @@ function ConvertToF(event) {
   Felement.removeEventListener("click", ConvertToF);
 
 }
-let form = document.querySelector(".form");
-form.addEventListener("submit", ProcessCity);
-
-let button = document.querySelector("#current-city");
-button.addEventListener("click", located_Coords);
-
-let Celement = document.querySelector("#celsius");
-Celement.addEventListener("click", ConvertToC);
-
-let Felement = document.querySelector("#Fahrenheit");
-Felement.addEventListener("click", ConvertToF);
-
-search("New York");
-
 //Funny southern sayings that change according to temperature or temperature description.
 //THESE ARE BY TEMPERATURE
 function Funny(temp) {
@@ -379,3 +339,23 @@ function windDirection(windCode) {
     windDirect.innerHTML = windCode;
   }
 }
+
+//GLobal declared vairables to access the temperature from the city that was searched.
+let FahrenheitTemp = null;
+let HighTemp = null;
+let LowTemp = null;
+let Feel = null;
+let form = document.querySelector(".form");
+form.addEventListener("submit", ProcessCity);
+
+let button = document.querySelector("#current-city");
+button.addEventListener("click", located_Coords);
+
+let Celement = document.querySelector("#celsius");
+Celement.addEventListener("click", ConvertToC);
+
+let Felement = document.querySelector("#Fahrenheit");
+Felement.addEventListener("click", ConvertToF);
+
+search("New York");
+
