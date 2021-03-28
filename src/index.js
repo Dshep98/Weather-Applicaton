@@ -18,6 +18,9 @@ function formatDate(time) {
   let day = update.getDay();
   return ` ${days[day]} | ${FormatHours(update)} `;
 }
+//Day and Time Format for forecast dates.
+//it takes in the timestamp from the show forecast function 
+// then sets the day to the specified time if its over midnight or one am the day changes to next day.
 function formatDateDay(timestamp) {
   let Update = new Date(timestamp);
   let dayz = Update.getDay() - 1;
@@ -112,8 +115,11 @@ function ShowForecast(response) {
   <div class="col-2">
   <div class="D1-card">
     <div class="D-body">
-    ${formatDateDay(forecast.dt * 1000)}
-       ${FormatHours(forecast.dt * 1000)}<br /> 
+    <strong>
+    ${formatDateDay(forecast.dt * 1000)} <br>
+       ${FormatHours(forecast.dt * 1000)}
+    </strong>
+    <br /> 
        <span class="forecast-temp">
       ${Math.round(forecast.main.temp)}
       </span>° <br />
@@ -132,7 +138,7 @@ function ShowForecast(response) {
   </div>`;
   }
 }
-// //Change city function seraches for the city entered by the user using the weather API.
+// //Change city function seraches for or request the city entered by the user using the weather API.
 function change_city(findCity) {
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiURL).then(ShowCityTemp);
@@ -141,6 +147,7 @@ function change_city(findCity) {
   axios.get(apiURL).then(ShowForecast);
 
 }
+// heandles the default settings of the page and changes the city once its been found.
   function ProcessCity(event){
   event.preventDefault();
   let findcity = document.querySelector("#city-input");
@@ -180,7 +187,6 @@ function ConvertToC(event) {
   let LowCTemp = ((LowTemp - 32) * 5) / 9;
   let FeelCTemp = ((Feel - 32) * 5) / 9;
   tempElement.innerHTML = Math.round(Ctemp);
-  //when cel is clicked turn low and high temps to celsius
   let HighElement = document.querySelector("#high");
   HighElement.innerHTML = Math.round(HighCTemp);
   let LowElement = document.querySelector("#low");
