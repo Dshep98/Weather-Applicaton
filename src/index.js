@@ -133,8 +133,7 @@ function change_city(findCity) {
   let findcity = document.querySelector("#city-input");
   let foundcity = document.querySelector("h2");
   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
-  let city = findcity.value;
-  change_city(city);
+  change_city(findcity.value);
   }
   
 
