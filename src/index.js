@@ -109,26 +109,25 @@ function ShowForecast(response) {
   let forecast = null;
   for (let index = 0; index <= 4; index++) {
     forecast = response.data.list[index];
-    ForecastTemp = Math.round(forecast.main.temp);
-    ForecastHigh = Math.round(forecast.main.temp_max);
-    ForecastLow = Math.round(forecast.main.temp_min);
     forecastElement.innerHTML += `
   <div class="col-2">
   <div class="D1-card">
     <div class="D-body">
-    <strong>
        ${FormatHours(forecast.dt * 1000)}<br /> 
-       </strong>
-       <span class=temp2>
-      ${ForecastTemp}°
+       <span class="forecast-temp">
+      ${Math.round(forecast.main.temp)}°
       </span> <br />
-      ${response.data.list[0].weather[0].description.toUpperCase()} <br />
+      ${response.data.list[0].weather[0].description} <br />
       <img
       src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
       <br />
       <br/>
-      H: <strong id="high2"> ${ForecastHigh}°</strong> 
-      L: <span id="low2"> ${ForecastLow}°</span>
+      H: <strong> <span class="forecast-high">${Math.round(
+        forecast.main.temp_max
+      )}</span>°</strong> 
+      L: <span class="forecast-low">${Math.round(
+        forecast.main.temp_min
+      )}</span>°
     </div>
   </div>`;
   }
@@ -172,17 +171,14 @@ button.addEventListener("click", located_Coords);
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
 function ConvertToC(event) {
   event.preventDefault();
-  //fix switching
-  // Felement.classList.remove("active");
-  // Celement.classList.add("active");
+  event.preventDefault();
+  Felement.classList.remove("active");
+  Celement.classList.add("active");
   //°C = (°F - 32) x 5 ÷ 9
   let tempElement = document.querySelector(".current");
   let Ctemp = ((FahrenheitTemp - 32) * 5) / 9;
   let HighCTemp = ((HighTemp - 32) * 5) / 9;
   let LowCTemp = ((LowTemp - 32) * 5) / 9;
-  let ForeTemp = ((ForecastTemp - 32) * 5) / 9;
-  let ForeHighC = ((ForecastHigh - 32) * 5) / 9;
-  let ForeLowC = ((ForecastLow - 32) * 5) / 9;
   let FeelCTemp = ((Feel - 32) * 5) / 9;
   tempElement.innerHTML = Math.round(Ctemp);
   //when cel is clicked turn low and high temps to celsius
@@ -190,50 +186,98 @@ function ConvertToC(event) {
   HighElement.innerHTML = Math.round(HighCTemp);
   let LowElement = document.querySelector("#low");
   LowElement.innerHTML = Math.round(LowCTemp);
-  let Temp2Element = document.querySelector(".temp2");
-  Temp2Element.innerHTML = Math.round(ForeTemp);
-  let ForeHighElement = document.querySelector("#high2");
-  ForeHighElement.innerHTML = Math.round(ForeHighC);
-  let ForeLowElement = document.querySelector("#low2");
-  ForeLowElement.innerHTML = Math.round(ForeLowC);
+  
   let FeelElement = document.querySelector("#Real-feel");
   FeelElement.innerHTML = Math.round(FeelCTemp);
+  ///////////////////////////////////////////////////////////////////
+  //Forecast Changes
+  let forecastHigh = document.querySelectorAll(".forecast-high");
+  forecastHigh.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+    // convert to Celsius
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+  let forecastLow = document.querySelectorAll(".forecast-low");
+  forecastLow.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    //console.log(currentTemp);
+    // convert to Celsius
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  let forecastTemp = document.querySelectorAll("forecast-temp");
+  forecastTemp.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    console.log(currentTemp);
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+    // convert to Celsius
+    item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+  });
+
+  // to avoid double conversion
+  Celement.removeEventListener("click", ConvertToC);
+  Felement.addEventListener("click", ConvertToF);
 }
+  
 //GLobal declared vairables to access the temperature from the city that was searched.
 let FahrenheitTemp = null;
 let HighTemp = null;
 let LowTemp = null;
-let ForecastTemp = null;
-let ForecastHigh = null;
-let ForecastLow = null;
 let Feel = null;
 //This function converts the celsius temperature back to Fahrenheit once its clicked.
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
 function ConvertToF(event) {
   event.preventDefault();
-  //Felement.classList.add("active");
-  //Celement.classList.remove("active");
+  Felement.classList.add("active");
+  Celement.classList.remove("active");
   let tempElement = document.querySelector(".current");
   tempElement.innerHTML = Math.round(FahrenheitTemp);
   let HighElement = document.querySelector("#high");
   HighElement.innerHTML = Math.round(HighTemp);
   let LowElement = document.querySelector("#low");
   LowElement.innerHTML = Math.round(LowTemp);
-  let Temp2Element = document.querySelector(".temp2");
-  Temp2Element.innerHTML = Math.round(ForecastTemp);
-  let ForeHighElement = document.querySelector("#high2");
-  ForeHighElement.innerHTML = Math.round(ForecastHigh);
-  let ForeLowElement = document.querySelector("#low2");
-  ForeLowElement.innerHTML = Math.round(ForecastLow);
   let FeelElement = document.querySelector("#Real-feel");
   FeelElement.innerHTML = Math.round(Feel);
+  /////////////////////////////////////////////////////////////////////////////
+  ///Forecast changes
+  let forecastHigh = document.querySelectorAll(".forecast-high");
+  forecastHigh.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+  let forecastLow = document.querySelectorAll(".forecast-low");
+  forecastLow.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+  let forecastTemp = document.querySelectorAll(".forecast-temp");
+  forecastTemp.forEach(function (item) {
+    // grabbing the current value to convert
+    let currentTemp = item.innerHTML;
+    // convert to Fahrenheit
+    item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+  });
+  // to avoid double conversion
+  Celement.addEventListener("click", ConvertToC);
+  Felement.removeEventListener("click", ConvertToF);
+
 }
 
-let Felement = document.querySelector("#celsius");
-Felement.addEventListener("click", ConvertToC);
+let Celement = document.querySelector("#celsius");
+Celement.addEventListener("click", ConvertToC);
 
-let Celement = document.querySelector("#Fahrenheit");
-Celement.addEventListener("click", ConvertToF);
+let Felement = document.querySelector("#Fahrenheit");
+Felement.addEventListener("click", ConvertToF);
 
 //Funny southern sayings that change according to temperature or temperature description.
 //THESE ARE BY TEMPERATURE
