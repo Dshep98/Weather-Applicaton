@@ -90,6 +90,35 @@ function ShowCityTemp(response) {
 
 //This function dispalys the forecast in three hour increments from the current time.
 //Then displays time, temperature, the temp icon, and highs and lows.
+// function ShowForecast(response) {
+//   let forecastElement = document.querySelector("#forecast");
+//   forecastElement.innerHTML = null;
+//   let forecast = null;
+//   for (let index = 0; index <= 4; index++) {
+//     forecast = response.data.list[index];
+//     forecastElement.innerHTML += `
+//   <div class="col-2">
+//   <div class="D1-card">
+//     <div class="D-body">
+//        ${FormatHours(forecast.dt * 1000)}<br /> 
+//        <span class="forecast-temp">
+//       ${Math.round(forecast.main.temp)}°
+//       </span> <br />
+//       ${response.data.list[0].weather[0].description} <br />
+//       <img
+//       src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
+//       <br />
+//       <br/>
+//       H: <strong> <span class="forecast-high">${Math.round(
+//         forecast.main.temp_max
+//       )}</span>°</strong> 
+//       L: <span class="forecast-low">${Math.round(
+//         forecast.main.temp_min
+//       )}</span>°
+//     </div>
+//   </div>`;
+//   }
+// }
 function ShowForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
@@ -102,8 +131,8 @@ function ShowForecast(response) {
     <div class="D-body">
        ${FormatHours(forecast.dt * 1000)}<br /> 
        <span class="forecast-temp">
-      ${Math.round(forecast.main.temp)}°
-      </span> <br />
+      ${Math.round(forecast.main.temp)}
+      </span>° <br />
       ${response.data.list[0].weather[0].description} <br />
       <img
       src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png"
@@ -156,6 +185,56 @@ function located_Coords(event) {
 
 // FUnction converts the fahrenheit temp to celsius once its clicked.
 //Its done for Today's temp, highs/lows of todays temp, and the temps from the forecast.
+// function ConvertToC(event) {
+//   event.preventDefault();
+//   Felement.classList.remove("active");
+//   Celement.classList.add("active");
+//   //°C = (°F - 32) x 5 ÷ 9
+//   let tempElement = document.querySelector(".current");
+//   let Ctemp = ((FahrenheitTemp - 32) * 5) / 9;
+//   let HighCTemp = ((HighTemp - 32) * 5) / 9;
+//   let LowCTemp = ((LowTemp - 32) * 5) / 9;
+//   let FeelCTemp = ((Feel - 32) * 5) / 9;
+//   tempElement.innerHTML = Math.round(Ctemp);
+//   //when cel is clicked turn low and high temps to celsius
+//   let HighElement = document.querySelector("#high");
+//   HighElement.innerHTML = Math.round(HighCTemp);
+//   let LowElement = document.querySelector("#low");
+//   LowElement.innerHTML = Math.round(LowCTemp);
+//   let FeelElement = document.querySelector("#Real-feel");
+//   FeelElement.innerHTML = Math.round(FeelCTemp);
+//   ///////////////////////////////////////////////////////////////////
+//   //Forecast Changes
+//   let forecastHigh = document.querySelectorAll(".forecast-high");
+//   forecastHigh.forEach(function (item) {
+//     // grabbing the current value to convert
+//     let currentTemp = item.innerHTML;
+//     // convert to Fahrenheit
+//     item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+//     // convert to Celsius
+//     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+//   });
+//   let forecastLow = document.querySelectorAll(".forecast-low");
+//   forecastLow.forEach(function (item) {
+//     // grabbing the current value to convert
+//     let currentTemp = item.innerHTML;
+//     // convert to Celsius
+//     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+//   });
+//   let forecastTemp = document.querySelectorAll("forecast-temp");
+//   forecastTemp.forEach(function (item) {
+//     // grabbing the current value to convert
+//     let currentTemp = item.innerHTML;
+//     //console.log(currentTemp);
+//     // convert to Fahrenheit
+//     item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
+//     // convert to Celsius
+//     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
+//   });
+//   // to avoid double conversion
+//   Celement.removeEventListener("click", ConvertToC);
+//   Felement.addEventListener("click", ConvertToF);
+// }
 function ConvertToC(event) {
   event.preventDefault();
   Felement.classList.remove("active");
@@ -192,11 +271,11 @@ function ConvertToC(event) {
     // convert to Celsius
     item.innerHTML = Math.round(((currentTemp - 32) * 5) / 9);
   });
-  let forecastTemp = document.querySelectorAll("forecast-temp");
+  let forecastTemp = document.querySelectorAll(".forecast-temp");
   forecastTemp.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;
-    //console.log(currentTemp);
+    console.log(currentTemp);
     // convert to Fahrenheit
     item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
     // convert to Celsius
