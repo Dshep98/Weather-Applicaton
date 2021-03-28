@@ -18,6 +18,18 @@ function formatDate(time) {
   let day = update.getDay();
   return ` ${days[day]} | ${FormatHours(update)} `;
 }
+function formatDateDay(timestamp) {
+  let Update = new Date(timestamp);
+  let dayz = Update.getDay() - 1;
+  let dayHour = Update.getHours();
+  console.log(dayHour);
+  if (dayHour >= 0 || dayHour === 1) {
+    dayz = Update.getDay() + 1;
+    return ` ${days[dayz]} `;
+  }
+  return ` ${days[dayz]} `;
+}
+
 //This function takes in the timestamp of the city and formats it.
 function FormatHours(timestamp) {
   let time = new Date(timestamp);
@@ -100,6 +112,7 @@ function ShowForecast(response) {
   <div class="col-2">
   <div class="D1-card">
     <div class="D-body">
+    ${formatDateDay(forecast.dt * 1000)}
        ${FormatHours(forecast.dt * 1000)}<br /> 
        <span class="forecast-temp">
       ${Math.round(forecast.main.temp)}
