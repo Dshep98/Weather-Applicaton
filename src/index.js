@@ -133,7 +133,7 @@ function ShowForecast(response) {
   }
 }
 // //Change city function seraches for the city entered by the user using the weather API.
-function change_city(city) {
+function change_city(findCity) {
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiURL).then(ShowCityTemp);
 //this portion is for forecast
@@ -148,6 +148,7 @@ function change_city(city) {
   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
   let city = findcity.value;
   let findCity = city;
+  change_city(findCity);
   }
   
 
@@ -165,8 +166,7 @@ function located_Coords(event) {
   }
   navigator.geolocation.getCurrentPosition(ShowLocation);
 }
-let button = document.querySelector("#current-city");
-button.addEventListener("click", located_Coords);
+
 
 
 // FUnction converts the fahrenheit temp to celsius once its clicked.
@@ -276,6 +276,9 @@ function ConvertToF(event) {
 }
 let form = document.querySelector(".form");
 form.addEventListener("submit", ProcessCity);
+
+let button = document.querySelector("#current-city");
+button.addEventListener("click", located_Coords);
 
 let Celement = document.querySelector("#celsius");
 Celement.addEventListener("click", ConvertToC);
