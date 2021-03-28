@@ -1,5 +1,6 @@
 ## Weather-Applicaton
 ### Description:
+##### *Beware its not mobile ready yet. So its best seen either on a desktop, laptop, or maybe a tablet.
 
 This program is a real-life weather application that's easy to use. It uses real-time data from a [ Weather API](https://openweathermap.org/) to collect information for features that usually come with finding the weather such as: a city thats being searched, current location, temperature in Fahrenheit or Celsius, high/lows, 5 day forecast,etc.Instead of a normal weather app this one gives funny southern sayings according to the change in temperature of the weather.
 
