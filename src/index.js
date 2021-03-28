@@ -142,13 +142,12 @@ function change_city(findCity) {
 
 }
   function ProcessCity(event){
-    event.preventDefault();
-    let findcity = document.querySelector("#city-input");
+  event.preventDefault();
+  let findcity = document.querySelector("#city-input");
   let foundcity = document.querySelector("h2");
   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
   let city = findcity.value;
-  let findCity = city;
-  change_city(findCity);
+  change_city(city);
   }
   
 
