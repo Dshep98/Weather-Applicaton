@@ -133,38 +133,23 @@ function ShowForecast(response) {
   }
 }
 // //Change city function seraches for the city entered by the user using the weather API.
-// function change_city(event) {
-//   event.preventDefault();
-//   let findcity = document.querySelector("#city-input");
-//   let foundcity = document.querySelector("h2");
-//   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
-//   let city = findcity.value;
-//   let findCity = city;
-//   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
-//   axios.get(apiURL).then(ShowCityTemp);
-//   //this portion is for forecast
-//   apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${findCity}&appid=${apiKey}&units=${units}`;
-//   axios.get(apiURL).then(ShowForecast);
-// }
-
-//Change city function seraches for the city entered by the user using the weather API.
-function change_city(findCity) {
+function change_city(city) {
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiURL).then(ShowCityTemp);
-  //this portion is for forecast
+//this portion is for forecast
   apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${findCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiURL).then(ShowForecast);
+
 }
-function Process_city(event) {
-  event.preventDefault();
-  let findcity = document.querySelector("#city-input");
+  function ProcessCity(event){
+    event.preventDefault();
+    let findcity = document.querySelector("#city-input");
   let foundcity = document.querySelector("h2");
   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
   let city = findcity.value;
   let findCity = city;
-  change_city(findCity);
-}
-
+  }
+  
 
 //Location functions uses the Geolocation Api and searches by the given coordinates of the longitude and Latitude.
 function located_Coords(event) {
@@ -290,13 +275,15 @@ function ConvertToF(event) {
 
 }
 let form = document.querySelector(".form");
-form.addEventListener("submit",Process_city);
+form.addEventListener("submit", ProcessCity);
 
 let Celement = document.querySelector("#celsius");
 Celement.addEventListener("click", ConvertToC);
 
 let Felement = document.querySelector("#Fahrenheit");
 Felement.addEventListener("click", ConvertToF);
+
+search("New York");
 
 //Funny southern sayings that change according to temperature or temperature description.
 //THESE ARE BY TEMPERATURE
@@ -390,5 +377,3 @@ function windDirection(windCode) {
     windDirect.innerHTML = windCode;
   }
 }
-
-change_city("Dominican Republic");
