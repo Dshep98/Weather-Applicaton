@@ -51,6 +51,8 @@ function ShowCityTemp(response) {
   let highTemp = document.querySelector("#high");
   let lowTemp = document.querySelector("#low");
   let RealFeel = document.querySelector("#Real-feel");
+  let sunrise = document.querySelector("#sunrise");
+  let sunset = document.querySelector("#sunset");
   ////////////////////////////////////////////////////
   FahrenheitTemp = response.data.main.temp;
   HighTemp = response.data.main.temp_max;
@@ -71,6 +73,8 @@ function ShowCityTemp(response) {
   highTemp.innerHTML = Math.round(HighTemp);
   lowTemp.innerHTML = Math.round(LowTemp);
   RealFeel.innerHTML = Math.round(Feel);
+  sunrise.innerHTML = FormatHours(response.data.sys.sunrise * 1000);
+  sunset.innerHTML = FormatHours(response.data.sys.sunset * 1000);
   //FUnction Calls for Funny sayings function
   let Ftemp = temp.innerHTML;
   Funny(Ftemp);
@@ -357,5 +361,5 @@ Celement.addEventListener("click", ConvertToC);
 let Felement = document.querySelector("#Fahrenheit");
 Felement.addEventListener("click", ConvertToF);
 
-search("New York");
+change_city("Dominican Republic");
 
