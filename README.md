@@ -24,10 +24,10 @@ This program is a real-life weather application that's easy to use. It uses real
 I used this site to host the weather app on
 - [Wind Direction Map](http://snowfence.umn.edu/Components/winddirectionanddegreeswithouttable3.htm)  
  I used this as a source to brute force the wind directions since all the API gave was the degree direction. I passed that number into the wind function and it matched the number passed in to the cardinal direction. Ex: cod: 200 cardinal direction: SSW 
-- [Background Source](https://codepen.io/P1N2O/pen/pyBNzX)
+- [Application Background Source](https://codepen.io/P1N2O/pen/pyBNzX)
 - [Southern Sayings](https://wanderwisdom.com/travel-destinations/Funny-Southern-Sayings-and-Southern-Expressions)
 - [Invision](https://dominique766495.invisionapp.com/freehand/Weather-App-with-a-twist-POeXgl9xR) 
-- I used this to create my wireframe for how I wanted my application to look with all its features.
+I used this to create my wireframe for how I wanted my application to look with all its features.
 
 ### Problems
 - The time for some areas may be slightly off as far as accuracy. That's just how the API is.
