@@ -3,21 +3,21 @@ let units = "imperial";
 let apiKey = "470566c1acab67fed5787c420158691b";
 
 //Default Forecast
-let forecastElement = document.querySelector("#forecast");
-forecastElement.innerHTML = null;
-for (let index = 0; index <= 4; index++) {
-  forecastElement.innerHTML += `<div class="col-2">
-<div class="D1-card">
-  <div class="D-body">
-    Day 1:<br />
-    65° <br />
-    Rain <br />
-    🌧<br />
-    H: 75° L: 55°
-  </div>
-</div>
-</div>`;
-}
+// let forecastElement = document.querySelector("#forecast");
+// forecastElement.innerHTML = null;
+// for (let index = 0; index <= 4; index++) {
+//   forecastElement.innerHTML += `<div class="col-2">
+// <div class="D1-card">
+//   <div class="D-body">
+//     Day 1:<br />
+//     65° <br />
+//     Rain <br />
+//     🌧<br />
+//     H: 75° L: 55°
+//   </div>
+// </div>
+// </div>`;
+// }
 //This function displays all the features that come with the city.
 //It produces the temperature, Date, weather description/icons, Highs/Lows, and Wind/Humidity;
 function ShowCityTemp(response) {
@@ -132,22 +132,39 @@ function ShowForecast(response) {
   </div>`;
   }
 }
+// //Change city function seraches for the city entered by the user using the weather API.
+// function change_city(event) {
+//   event.preventDefault();
+//   let findcity = document.querySelector("#city-input");
+//   let foundcity = document.querySelector("h2");
+//   foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
+//   let city = findcity.value;
+//   let findCity = city;
+//   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
+//   axios.get(apiURL).then(ShowCityTemp);
+//   //this portion is for forecast
+//   apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${findCity}&appid=${apiKey}&units=${units}`;
+//   axios.get(apiURL).then(ShowForecast);
+// }
+
 //Change city function seraches for the city entered by the user using the weather API.
-function change_city(event) {
-  event.preventDefault();
-  let findcity = document.querySelector("#city-input");
-  let foundcity = document.querySelector("h2");
-  foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
-  let city = findcity.value;
-  let findCity = city;
+function change_city(findCity) {
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${findCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiURL).then(ShowCityTemp);
   //this portion is for forecast
   apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${findCity}&appid=${apiKey}&units=${units}`;
   axios.get(apiURL).then(ShowForecast);
 }
-let form = document.querySelector(".form");
-form.addEventListener("submit", change_city);
+function Process_city(event) {
+  event.preventDefault();
+  let findcity = document.querySelector("#city-input");
+  let foundcity = document.querySelector("h2");
+  foundcity.innerHTML = `${findcity.value.toUpperCase()}`;
+  let city = findcity.value;
+  let findCity = city;
+  change_city(findCity);
+}
+
 
 //Location functions uses the Geolocation Api and searches by the given coordinates of the longitude and Latitude.
 function located_Coords(event) {
@@ -272,6 +289,8 @@ function ConvertToF(event) {
   Felement.removeEventListener("click", ConvertToF);
 
 }
+let form = document.querySelector(".form");
+form.addEventListener("submit",Process_city);
 
 let Celement = document.querySelector("#celsius");
 Celement.addEventListener("click", ConvertToC);
@@ -371,3 +390,5 @@ function windDirection(windCode) {
     windDirect.innerHTML = windCode;
   }
 }
+
+change_city("Dominican Republic");
