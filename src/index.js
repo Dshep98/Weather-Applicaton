@@ -196,7 +196,7 @@ function ConvertToC(event) {
   forecastTemp.forEach(function (item) {
     // grabbing the current value to convert
     let currentTemp = item.innerHTML;
-    console.log(currentTemp);
+    //console.log(currentTemp);
     // convert to Fahrenheit
     item.innerHTML = Math.round((currentTemp * 9) / 5 + 32);
     // convert to Celsius
